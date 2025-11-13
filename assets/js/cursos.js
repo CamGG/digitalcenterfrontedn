@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================================================
     // 1. CONFIGURACIÓN Y CONSTANTES (Reutilizadas de script.js)
     // ===================================================================
-    const PRODUCTION_API_URL = "https://centrodeinovacion-74109388085.southamerica-east1.run.app";
+    const PRODUCTION_API_URL = "https://digitalcenter-74109388085.southamerica-east1.run.app";
     const IS_LOCAL_FRONTEND = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
     const API_BASE_URL = IS_LOCAL_FRONTEND ? "http://127.0.0.1:5000" : PRODUCTION_API_URL;
     const WHATSAPP_NUMBER = "573204803221";

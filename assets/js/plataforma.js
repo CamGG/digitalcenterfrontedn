@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleTokenFromUrl();
     console.log("[plataforma.js] Inicializando v-final (Multi-Content)...");
 
-    const PRODUCTION_API_URL = "hhttps://digitalcenter-74109388085.europe-west1.run.app";
+    const PRODUCTION_API_URL = "https://centrodeinovacion-74109388085.southamerica-east1.run.app";
     const IS_LOCAL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
     const API_BASE_URL = IS_LOCAL ? "http://127.0.0.1:5000" : PRODUCTION_API_URL;
     const token = localStorage.getItem('accessToken');

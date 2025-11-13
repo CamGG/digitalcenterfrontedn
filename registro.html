@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - Centro de Innovación Digital</title>
+    <meta name="description" content="Únete a la comunidad del Centro de Innovación Digital y comienza tu camino hacia el éxito en el sector público.">
+
+    <link rel="icon" type="image/png" href="/assets/images/logo-bar.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="registration-page-body">
+
+    <header class="minimal-header">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo-cid.png" alt="Centro de Innovación Digital Logo">
+        </a>
+    </header>
+
+    <main class="registration-main">
+        <div class="registration-container">
+            <div class="registration-header">
+                <h2>Crea tu Cuenta</h2>
+                <p>Únete a nuestra comunidad y da el primer paso hacia tu futuro.</p>
+            </div>
+
+            <form id="register-form-page">
+                <div id="authMessage" class="form-message" style="display:none;"></div>
+                <div class="form-group">
+                    <label for="authUsername">Nombre Completo <small>(así aparecerá en tus certificados)</small></label>
+                    <input type="text" id="authUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="authEmail">Correo Electrónico</label>
+                    <input type="email" id="authEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">Contraseña</label>
+                    <input type="password" id="authPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="authConfirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="authConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-solid-primary btn-register">Crear mi Cuenta</button>
+            </form>
+
+            <div class="social-login-divider">
+                <span>O</span>
+            </div>
+
+            <a  id="google-login-btn" class="btn btn-social btn-google">
+                <i class="fab fa-google"></i> Continuar con Google
+            </a>
+
+            <div class="login-redirect">
+                <p>¿Ya tienes una cuenta? <a href="#" id="login-link">Inicia sesión aquí</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="auth-modal-container"></div>
+
+    <script src="assets/js/script.js"></script>
+
+</body>
+</html>

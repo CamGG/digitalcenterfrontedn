@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora nuestro catálogo completo de cursos de preparación para convocatorias públicas. Encuentra el curso perfecto para ti.">
+    <title>Catálogo de Cursos | CID</title>
+
+    <link rel="icon" type="image/png" href="/assets/images/logo-bar.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-cid.png" alt="Centro de Innovación Digital Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                </ul>
+            </nav>
+            <div id="header-buttons-container">
+                 </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="courses-section" class="section">
+            <div class="container">
+                <h2 class="section-title">Explora Nuestros Cursos</h2>
+                <p class="section-subtitle">Utiliza el buscador para encontrar el curso perfecto por título o descripción.</p>
+
+                <div class="search-container">
+                    <form id="search-form">
+                        <input type="search" id="search-input" placeholder="Buscar por título o descripción..." aria-label="Buscar Cursos">
+                        <button type="submit" class="btn btn-solid-primary">Buscar</button>
+                    </form>
+                </div>
+
+                <div class="courses-grid" id="courses-grid-container">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-logo">Centro De Innovación Digital</div>
+            <p class="copyright">&copy; 2025 CID. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="auth-modal-container"></div>
+
+    <a href="https://wa.me/573204803221?text=Hola,%20estoy%20interesado%20en%20concursar!%20." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cursos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1498 @@
+/* =================================================================== */
+/* 1. VARIABLES GLOBALES Y RESET BÁSICO */
+/* =================================================================== */
+:root {
+    --blue-primary: #0052D4;
+    --blue-dark: #0A2540;
+    --blue-light: #F0F5FF;
+    --accent-orange: #FF7B25;
+    --accent-orange-rgb: 255, 123, 37; /* Asegúrate de que esta línea esté */
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --white: #FFFFFF;
+    --success: #28a745;
+    --danger: #dc3545;
+    --border-color: #e9ecef;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: var(--text-primary);
+    background-color: #F8F9FA;
+    line-height: 1.7;
+}
+.contenedorboton{
+    
+       
+    display: inline-block; /* Permite ajuste al contenido */
+    padding: 0.8rem 2rem; /* Espacio alrededor del texto */
+    border-radius: 50px; /* La clave para los extremos redondeados */
+    font-weight: 1200;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    border: none;
+
+    /* Asegúrate de que el texto sea lo suficientemente corto para caber */
+}
+.container {
+    margin: 0 ;
+    padding: 0 1.5rem;
+}
+
+
+/* =================================================================== */
+/* 2. COMPONENTES REUTILIZABLES (BOTONES, SPINNERS, ETC) */
+/* =================================================================== */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem; /* Padding base para todos los botones */
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; /* Transición para todas las propiedades */
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
+    border: none; /* Asegura que no haya borde por defecto */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Efecto hover por defecto (movimiento vertical) */
+    box-shadow: var(--shadow-md); /* Sombra por defecto */
+}
+
+/* ---------------------------------------------------- */
+/* TIPOS DE BOTONES */
+/* ---------------------------------------------------- */
+
+/* Botón Principal Sólido (Ej: "Iniciar Sesión") */
+.btn-solid-primary {
+    background-color: var(--accent-orange);
+    color: var(--white);
+    
+     
+    
+}
+
+.btn-solid-primary:hover {
+    /* Al pasar el ratón, puede ser un tono más oscuro o un efecto de luz */
+    background-color: #e66a1a; /* Un tono ligeramente más oscuro de accent-orange */
+    transform: translateY(-2px); /* Mantiene el efecto de movimiento */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Botón con Borde (Ej: "Registrarse", "Acceder" de la referencia) */
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--blue-primary); /* Color del texto y del borde */
+    border: 2px solid var(--blue-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--blue-primary); /* Relleno con el color primario */
+    color: var(--white); /* Texto blanco */
+    transform: translateY(-2px); /* Mantiene el efecto de movimiento */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Botón de Contacto (Más sutil, puede ser solo texto o un borde tenue) */
+.btn-contact {
+    background-color: transparent;
+    color: var(--text-primary); /* Color de texto más neutro */
+    border: 1px solid var(--border-color); /* Borde sutil */
+    padding: 0.8rem 1.5rem; /* Menor padding que los otros si es más pequeño */
+}
+
+.btn-contact:hover {
+    background-color: var(--blue-light); /* Fondo azul claro al pasar el ratón */
+    color: rgb(8, 194, 8); /* Texto azul primario */
+    transform: translateY(-1px); /* Menor movimiento */
+    box-shadow: none; /* Sin sombra o una sombra muy sutil */
+}
+
+/* Estilo para los iconos dentro de los botones */
+.btn i {
+    margin-right: 0.5rem;
+}
+
+.loading-spinner {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--blue-primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 4rem auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--blue-primary);
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--blue-dark);
+}
+
+/* =================================================================== */
+/* 3. LAYOUT PRINCIPAL (HEADER, FOOTER) */
+/* =================================================================== */
+.main-header {
+    background-color: var(--white);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    padding-left: -30%;
+    justify-content: space-between;
+}
+  .header-content {
+        /* Esta regla es clave para el header responsivo */
+        justify-content: space-between;
+    }
+
+.logo {
+    flex-shrink: 1;
+    margin-right: auto;
+}
+
+.logo img {
+    height: 120px;
+    width: auto;
+    display: block;
+}
+
+.main-nav {
+    margin: 0 2rem;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+#header-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.main-footer {
+    background-color: var(--blue-dark);
+    color: var(--white);
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.copyright {
+    opacity: 0.7;
+}
+
+/* =================================================================== */
+/* 4. PÁGINA DE INICIO (INDEX.HTML) */
+/* =================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
+    color: var(--white);
+    padding: 8rem 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--blue-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 4rem auto;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.course-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.course-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.course-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.description-area {
+    flex-grow: 1; /* ¡IMPORTANTE! Hace que esta área crezca, empujando el botón principal hacia abajo. */
+}
+
+/* Ajuste para el botón principal */
+.course-card .btn-main-action {
+    margin-top: 1rem; /* Reemplaza el 'margin-top: auto' */
+}
+.course-card-content h3 {
+    font-size: 1.4rem;
+    color: var(--blue-dark);
+    margin: 0.5rem 0;
+}
+
+.course-card-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* =================================================================== */
+/* 5. MODALES DE AUTENTICACIÓN */
+/* =================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s ease forwards;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto; 
+    padding: 3rem 1rem;
+
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto; /* CAMBIADO: Elimina el '10%' para un centrado vertical flexible */
+    padding: 2rem 2.5rem; /* AJUSTADO: Reduce ligeramente el padding para compactar */
+    border-radius: var(--border-radius);
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25), /* Sombra estándar */
+                0 0 0 4px rgba(var(--accent-orange-rgb), 0.6); /* NUEVO: Contorno naranja luminoso */
+    animation: slideIn 0.4s ease-out forwards;
+    text-align: center;
+    border: 1px solid var(--border-color); /* Mantenemos el borde sutil */
+}
+
+/* Animaciones (mantener) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Botón de cerrar (X) */
+.close-btn {
+    color: var(--text-secondary);
+    font-size: 2rem; /* AJUSTADO: Ligeramente más pequeño para no abrumar */
+    font-weight: normal;
+    cursor: pointer;
+    position: absolute;
+    top: 0.7rem; /* AJUSTADO: Sube un poco para compactar */
+    right: 1rem; /* AJUSTADO: Acerca un poco al borde */
+    line-height: 1;
+    transition: color 0.2s ease;
+    padding: 0.2rem;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--danger);
+    outline: none;
+}
+
+/* Títulos y Subtítulos dentro del modal */
+.modal-content h2 {
+    font-size: 2.2rem; /* AJUSTADO: Ligeramente más pequeño para el flujo vertical */
+    color: var(--blue-dark);
+    margin-bottom: 0.6rem; /* AJUSTADO: Reduce un poco el margen */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.modal-content h4 {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* AJUSTADO: Reduce el margen antes del formulario */
+    line-height: 1.4;
+}
+
+/* Formulario */
+.form-group {
+    margin-bottom: 1.2rem; /* AJUSTADO: Reduce un poco el espacio entre campos */
+    position: relative;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem; /* AJUSTADO: Reduce el margen debajo de la etiqueta */
+    font-weight: 600;
+    font-size: 0.9rem; /* AJUSTADO: Ligeramente más pequeño para compactar */
+    color: var(--text-primary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.9rem 1.2rem; /* AJUSTADO: Reduce ligeramente el padding de los inputs */
+    border-radius: 8px;
+    border: 0.1px solid ;
+    border-color: #00000031;
+    background-color: #fcfcfc;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--blue-primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(0, 82, 212, 0.25);
+}
+
+.form-group input::placeholder {
+    color: #aeb9c3;
+}
+
+/* Mensajes de formulario */
+.form-message {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.5rem; /* AJUSTADO: Reduce el margen */
+    border-radius: 8px;
+    font-size: 0.95rem; /* AJUSTADO: Ligeramente más pequeño */
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.form-message.success {
+    background-color: #e6ffed;
+    color: #007a33;
+    border: 1px solid #b3e6c3;
+}
+
+.form-message.error {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border: 1px solid #e6b3b3;
+}
+
+/* Enlace para cambiar entre Login/Registro */
+#toggleAuthMode {
+    color: var(--blue-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    margin-top: 1.2rem; /* AJUSTADO: Reduce el margen superior */
+    display: block;
+    font-size: 0.95rem; /* AJUSTADO: Más compacto */
+}
+
+#toggleAuthMode:hover {
+    color: var(--accent-orange);
+    text-decoration: underline;
+}
+
+/* Botones dentro del modal (incluyendo el de "Registrarse") */
+/* Asumo que el botón de "Registrarse" usa btn-outline o btn-primary si está sólido */
+.modal-content .btn { /* Aplica esto a cualquier botón dentro del modal */
+    margin-top: 1.8rem; /* AJUSTADO: Más espacio arriba para el botón principal */
+    width: 100%;
+    padding: 0.9rem 2rem; /* AJUSTADO: Reduce padding del botón */
+    font-size: 1.05rem; /* AJUSTADO: Más compacto */
+    border-radius: 50px;
+}
+/* Estilos para la descripción expandible en las tarjetas de curso */
+
+.course-card-description {
+    /* Limita la altura inicial para mostrar solo unas pocas líneas */
+    max-height: 70px; /* Ajusta este valor según la fuente y el interlineado */
+    overflow: hidden;
+    /* Transición suave para el cambio de altura */
+    transition: max-height 0.4s ease-in-out;
+    /* Posición relativa para el degradado opcional */
+    position: relative;
+}
+
+.course-card-description.expanded {
+    /* Altura máxima cuando está expandido para mostrar todo el contenido */
+    max-height: 2000px; /* Un valor grande que no se alcanzará */
+}
+
+/* Opcional: Añade un degradado en la parte inferior para indicar que hay más texto */
+.course-card-description::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0));
+    transition: opacity 0.2s ease;
+}
+
+/* Oculta el degradado cuando la tarjeta está expandida */
+.course-card-description.expanded::after {
+    opacity: 0;
+}
+
+
+/* Estilos para el botón "Ver más" */
+.toggle-description-btn {
+    background: none;
+    border: none;
+    color: var(--blue-primary);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 0 0 0; /* Espaciado superior */
+    display: inline-block; /* Para que se alinee bien */
+    align-self: flex-start; /* Se alinea a la izquierda */
+    font-size: 0.9rem;
+}
+
+.toggle-description-btn:hover {
+    text-decoration: underline;
+}
+/* Si tu botón de registro es específicamente .btn-outline y quieres que se vea más pequeño
+   dentro del modal que el botón de login, puedes añadir una regla más específica: */
+/* .modal-content .btn-outline {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+} */
+
+
+/* Media query para hacer el modal más compacto en pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.8rem 1rem; /* AJUSTADO: Más compacto en móvil */
+        width: 95%;
+        margin: 5% auto; /* Mantenemos el centrado móvil */
+    }
+    .modal-content h2 {
+        font-size: 2rem;
+    }
+    .modal-content h4 {
+        font-size: 0.85rem;
+    }
+    .form-group {
+        margin-bottom: 1rem; /* AJUSTADO: Más compacto en móvil */
+    }
+    .form-group input {
+        padding: 0.7rem 0.8rem; /* AJUSTADO: Más compacto en móvil */
+    }
+    .modal-content .btn { /* Aplica a todos los botones dentro del modal en móvil */
+        padding: 0.8rem 1.5rem; /* AJUSTADO: Más compacto en móvil */
+        font-size: 1rem;
+        margin-top: 1.5rem; /* AJUSTADO: Más compacto en móvil */
+    }
+    .close-btn {
+        font-size: 1.8rem;
+        top: 0.5rem;
+        right: 0.8rem;
+    }
+    #toggleAuthMode {
+        font-size: 0.9rem;
+        margin-top: 1rem; /* AJUSTADO: Más compacto en móvil */
+    }
+}
+/* =================================================================== */
+/* 6. ESTILOS DE LA PLATAFORMA INTERNA (PLATAFORMA.HTML) */
+/* =================================================================== */
+.platform-body {
+    background-color: var(--white);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar-toggle {
+     display: none;
+    }
+    
+
+.platform-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.platform-sidebar {
+    width: 300px;
+    background: linear-gradient(170deg, #0A2540 0%, #004080 100%);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    transition: width 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.sidebar-header .logo img {
+    height: 125px;
+    width: auto;
+    filter: brightness(0) invert(1); 
+    margin: 0 auto;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    margin-top: 2rem;
+    overflow-y: auto;
+}
+
+.sidebar-nav h3 {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.6);
+    padding: 0 0.5rem 1rem 0.5rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.sidebar-nav a.active {
+    background-color: var(--blue-primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-footer .btn {
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+    color: rgba(255,255,255,0.8);
+    border-color: rgba(255,255,255,0.4);
+    background: transparent;
+}
+
+.sidebar-footer .btn:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--white);
+}
+
+/* =================================================================== */
+/* 12. ESTILOS PARA ENLACE DE EXPLORAR CURSOS (SIDEBAR)            */
+/* =================================================================== */
+
+/* Estilo para el ícono del enlace de explorar */
+.sidebar-nav a#explore-courses-link i {
+    color: var(--accent-orange);
+    transition: color 0.2s ease;
+}
+
+/* Al pasar el ratón, el fondo se vuelve naranja y el texto blanco */
+.sidebar-nav a#explore-courses-link:hover {
+    background-color: rgba(255, 123, 37, 0.9); /* Naranja con un poco de transparencia */
+    color: var(--white);
+}
+
+/* El ícono también se vuelve blanco al pasar el ratón */
+.sidebar-nav a#explore-courses-link:hover i {
+    color: var(--white);
+}
+
+/* Estilo para cuando el enlace de explorar está activo (seleccionado) */
+.sidebar-nav a#explore-courses-link.active {
+    background-color: var(--accent-orange);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.sidebar-nav a#explore-courses-link.active i {
+    color: var(--white);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 0.5rem 1.5rem 0.5rem;
+    font-weight: 500;
+}
+
+.user-profile i {
+    font-size: 1.8rem;
+}
+
+.platform-main {
+    flex-grow: 1;
+    background-color: #F8F9FA;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.platform-main-header {
+    padding: 1.5rem 2.5rem;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.platform-main-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--blue-dark);
+}
+
+.platform-content-area {
+    padding: 2.5rem;
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 5rem 0;
+}
+.welcome-message h1 {
+    font-size: 2.5rem;
+    color: var(--blue-dark);
+}
+
+.video-player-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background-color: #000;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.video-player-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80;
+    height: 80;
+}
+
+.course-content h2 {
+    font-size: 1.8rem;
+    color: var(--blue-dark);
+    margin-bottom: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Estilos para el Visor de Contenido --- */
+
+/* Estilo base para el contenedor */
+
+.content-viewer-wrapper.viewer-image {
+  width: 100%;
+  margin: 1.5rem 0; /* Agrega espacio vertical */
+  min-height: 100px; /* Evita que colapse totalmente */
+  background-color: #f8f9fa;
+  display: flex; /* Permite centrar o estirar contenido */
+  flex-direction: column;
+  overflow: hidden; /* Importante para bordes y scroll interno */
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.content-viewer-wrapper.viewer-image img {
+  /* --- 2. El núcleo de la responsividad --- */
+  /* La imagen nunca será más ancha que su contenedor */
+ /* Regla de Oro #1: La imagen nunca será más ancha que su contenedor. */
+  max-width: 100%;
+  
+  /* Regla de Oro #2: La altura se ajusta para no deformar la imagen. */
+  height: auto;
+  
+  /* Asegura un comportamiento consistente. */
+  display: block;
+
+  /* Toques estéticos opcionales */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 1. Estilos para VIDEO (proporción 16:9) */
+.viewer-video {
+  position: relative;
+  padding-top: 56.25%; /* Mantiene el aspect-ratio */
+  background-color: #000;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.viewer-video > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* CORRECCIÓN CLAVE: Se unificó el selector sin saltos de línea. */
+
+
+/* Regla para que el hijo (embed o iframe) llene el contenedor */
+
+
+
+/* **ESTA REGLA ES LA MÁS IMPORTANTE PARA EL IFRAME** */
+/* Le da una altura mínima y se asegura de que ocupe el espacio vertical */
+
+
+.lesson-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.lesson-item {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.lesson-item:hover {
+    border-color: var(--blue-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.lesson-item.active {
+    background-color: var(--blue-light);
+    border-color: var(--blue-primary);
+    font-weight: 600;
+}
+
+.lesson-item i {
+    color: var(--blue-primary);
+    font-size: 1.2rem;
+}
+
+
+/* =================================================================== */
+/* 7. ESTILOS RESPONSIVOS - ¡UNIFICADOS PARA AMBAS PÁGINAS! */
+/* =================================================================== */
+
+/* --- Para Pantallas de Tablets y Celulares (Menos de 992px) --- */
+@media (max-width: 992px) {
+
+
+    .content-viewer-wrapper.viewer-image {
+    /* En pantallas pequeñas, reducimos drásticamente el padding
+       para darle a la imagen el máximo espacio posible. */
+    padding: 0.5rem;
+    box-sizing: border-box;
+
+  /* Mantenemos un espacio de seguridad alrededor */
+  padding: 1rem;
+  }
+
+  .content-viewer-wrapper.viewer-image img {
+   
+     display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+ .pdf-toolbar {
+    /* Relleno mínimo para no desperdiciar espacio horizontal */
+    padding: 0.5rem 0.300rem; /* 8px arriba/abajo, 6px a los lados */
+    
+    /* Espacio muy reducido entre los elementos */
+    gap: 0.1rem; /* 6px */
+  }
+
+  .pdf-toolbar .btn {
+    /* Botones muy compactos para caber en la pantalla */
+    padding: 0.5rem 0.6rem; /* 8px arriba/abajo, ~10px a los lados */
+    
+    /* Texto e íconos más pequeños pero aún legibles */
+    font-size: 0.75rem; /* 12px */
+  }
+  
+  .pdf-toolbar .btn i {
+    /* El ícono se ajustará automáticamente al nuevo font-size del botón */
+    font-size: 1em;
+  }
+
+  .pdf-toolbar #pdf-page-info {
+    /* Mismo tamaño de fuente para consistencia */
+    font-size: 0.75rem; /* 12px */
+    
+    /* Importante para que el texto no se comprima o desaparezca */
+    flex-shrink: 0;
+    
+    /* Un poco de padding para que el texto no se pegue a los botones */
+    padding: 0 0.25rem;
+  }
+
+  
+
+    
+
+    /* --- REGLAS PARA PLATAFORMA.HTML --- */
+
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1100;
+        width: 40px;
+        height: 40px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .platform-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        transform: translateX(-100%); 
+        z-index: 1000;
+        background: linear-gradient(170deg, #0A2540 0%, #004080 100%);
+    }
+
+    .sidebar-open .platform-sidebar {
+        transform: translateX(0);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+    }
+
+    .platform-main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .sidebar-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: block; 
+    }
+    
+    .platform-content-area {
+        padding: 1.5rem;
+    }
+
+
+  
+   
+
+    /* --- REGLAS PARA INDEX.HTML --- */
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Distribuye espacio entre logo y botones */
+        padding: 0.8rem 1rem;
+    }
+        #header-buttons-container {
+         display: flex;
+        align-items: center;
+        gap: 0.4rem; /* Reduce el espacio entre los botones del header a 4px */
+        flex-shrink: 1; /* Permite que el contenedor de botones se encoja */
+        flex-wrap: nowrap; /
+    }
+
+    #header-buttons-container .btn {
+        padding: 0.5rem 0.8rem; /* Padding más pequeño para botones móviles */
+        font-size: 0.75rem; /* Fuente más pequeña (ej. 12px) */
+        line-height: 1; 
+    }
+     #header-buttons-container .btn-contact  { /* Oculta el texto dentro del botón */
+        display: none;
+    }
+   
+    .logo {
+    /* Esto limita el ancho del logo para dar espacio a los botones */
+    max-width: 140px; 
+    flex-shrink: 1; /* Permite que el logo se encoja si es necesario */
+}
+
+    .logo img {
+        height: 30px; /* Reducir el tamaño del logo en móviles */
+    }
+
+    .main-nav {
+        display: none; /* Oculta el menú de escritorio */
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem; /* Reduce el tamaño del título principal */
+    }
+    
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    .section {
+        padding: 3rem 0; /* Reduce el espacio vertical de las secciones */
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr; /* Apila las tarjetas de cursos */
+    }
+   
+    /* Nos aseguramos que el fondo oscuro no se muestre */
+    .sidebar-open::after {
+        display: none;
+    }
+}
+
+
+    
+    
+
+
+
+/* =================================================================== */
+/* 8. BOTÓN FLOTANTE DE WHATSAPP */
+/* =================================================================== */
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    animation: fadeIn-float 0.5s ease-out 1s forwards, pulse 2.5s infinite 2s;
+    opacity: 0;
+}
+
+.whatsapp-float:hover {
+    background-color: #1DAE54;
+    animation-play-state: paused;
+}
+
+@keyframes fadeIn-float {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+
+ /* =================================================================== */
+/* 9 * pdf y html
+/* =================================================================== */
+
+.content-viewer-wrapper.viewer-html,
+.content-viewer-wrapper.viewer-pdf-js {
+  /* CLAVE: Asigna una altura que ocupa la mayor parte de la pantalla,
+     restando el espacio aproximado del header y otros elementos.
+     Esto le da al iframe y al PDF un contenedor con altura definida. */
+  height: 75vh; 
+  max-height: 800px; /* Un límite para pantallas muy altas */
+}
+
+/* El iframe ahora llenará el espacio asignado por la regla anterior. */
+.viewer-html > iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* --- SOLUCIÓN PARA VIDEO E IMAGEN (RESPETANDO SU TAMAÑO) --- */
+/* Estas reglas anulan la altura fija para que videos e imágenes
+   usen su tamaño o aspect ratio natural, evitando que se hagan gigantes. */
+
+
+/* --- Estilos internos para el Visor de PDF --- */
+/* Esto funciona dentro del contenedor con 'height: 75vh' */
+
+.pdf-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem; /* Espacio entre elementos */
+  padding: 0.75rem 1rem; /* Relleno para la barra */
+  
+  /* Fondo limpio y borde sutil en la parte inferior */
+  background-color: #FFFFFF; 
+  border-bottom: 1px solid #e9ecef; /* Usando var(--border-color) si está disponible */
+
+  /* Mantenemos los bordes redondeados superiores */
+  border-radius: 12px 12px 0 0;
+  border-left: 1px solid #e9ecef;
+  border-right: 1px solid #e9ecef;
+  border-top: 1px solid #e9ecef;
+}
+.pdf-toolbar .btn {
+    width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  
+  /* Eliminamos estilos por defecto y centramos el ícono */
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Color del ícono y fondo transparente por defecto */
+  background-color: transparent;
+  color: #0A2540; /* Color azul oscuro de tu paleta (var(--blue-dark)) */
+  
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.pdf-toolbar .btn:active {
+  transform: translateY(0);
+  background-color: #e0eaff;
+}
+
+.pdf-toolbar #pdf-page-info {
+  font-weight: 600;
+  color: #6c757d; /* Color de texto secundario (var(--text-secondary)) */
+  margin: 0 0.5rem; /* Espacio extra para que no se pegue a los botones */
+}
+
+.pdf-canvas-container {
+  flex-grow: 1; /* Ocupa el espacio restante dentro del visor */
+  overflow: auto; /* AÑADE SCROLL si el PDF se desborda con el zoom. */
+  padding: 1rem;
+  text-align: center;
+  background-color: #f1f3f5;
+}
+#pdf-canvas {
+  box-shadow: var(--shadow-md);
+}
+
+/* =================================================================== */
+/* 10. HOTFIX PARA VISOR DE PDF (COMPATIBLE CON HTML Y VIDEO)      */
+/* =================================================================== */
+
+/* 1. Anulamos la altura fija SOLO para el visor de PDF.
+   Lo dejamos crecer automáticamente según sus hijos. */
+.content-viewer-wrapper.viewer-pdf-js {
+  height: auto;
+  max-height: none; /* Quitamos cualquier límite de altura */
+  border: none; /* El borde ahora estará en el contenedor del lienzo */
+  background-color: transparent;
+  margin: 0;
+}
+
+/* 2. Le damos al CONTENEDOR DEL LIENZO la altura y el scroll.
+   Esta es la clave: creamos una "ventana" de tamaño definido para ver el PDF. */
+.viewer-pdf-js .pdf-canvas-container {
+  height: 70vh;  /* Altura fija y grande para el área de scroll */
+  max-height: 750px;
+  overflow: auto; /* ¡Esencial! Permite el scroll vertical y horizontal del PDF */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+/* 3. La barra de botones se mantiene igual, fuera del área de scroll. */
+.viewer-pdf-js .pdf-toolbar {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  margin-top: 1.5rem; /* Separación superior */
+}
+
+/* 4. El lienzo del PDF se centra dentro de su contenedor. */
+.viewer-pdf-js #pdf-canvas {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* 5. Corrección para el estado de carga: lo sacamos del flujo.
+   (Opcional, pero mejora la experiencia visual) */
+#pdf-loading-state {
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* 11. AJUSTES RESPONSIVOS PARA TOOLBAR DE PDF                     */
+/* =================================================================== */
+
+
+
+.loginMessage{  font-style: var(--success);
+
+
+}
+/* Nuevos estilos para mensajes dentro de los formularios */
+.form-message {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-message.success {
+    background-color: #d4edda; /* verde claro */
+    color: #155724; /* verde oscuro */
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da; /* rojo claro */
+    color: #721c24; /* rojo oscuro */
+    border: 1px solid #f5c6cb;
+}
+
+/* =================================================================== */
+/* ESTILOS PARA EL CONTENEDOR DE BÚSQUEDA                          */
+/* =================================================================== */
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto 4rem auto; /* Centrado y con margen inferior */
+}
+
+.search-container form {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-container input[type="search"] {
+    flex-grow: 1; /* El input ocupa todo el espacio disponible */
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50px; /* Bordes redondeados */
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-container input[type="search"]:focus {
+    outline: none;
+    border-color: var(--blue-primary);
+    box-shadow: 0 0 0 4px rgba(0, 82, 212, 0.2);
+}
+
+/* Ajuste para que el botón de búsqueda no se mueva al hacer hover */
+.search-container .btn {
+    flex-shrink: 0; /* Evita que el botón se encoja */
+}
+
+/* =================================================================== */
+/* 12. ESTILOS PARA LA PÁGINA DE REGISTRO DEDICADA                 */
+/* =================================================================== */
+
+.registration-page-body {
+    background-color: #F8F9FA; /* Un fondo limpio y neutro */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.minimal-header {
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.minimal-header .logo img {
+    height: 60px; /* Un logo prominente pero no excesivo */
+    width: auto;
+}
+
+.registration-main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.registration-container {
+    max-width: 480px;
+    width: 100%;
+    background-color: var(--white);
+    padding: 2.5rem 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.registration-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.registration-header h2 {
+    font-size: 2.2rem;
+    color: var(--blue-dark);
+    font-weight: 700;
+    margin: 0;
+}
+
+.registration-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+#register-form-page .btn-register {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.login-redirect {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.login-redirect a {
+    color: var(--blue-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-redirect a:hover {
+    text-decoration: underline;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 520px) {
+    .registration-container {
+        padding: 2rem 1.5rem;
+    }
+    .registration-header h2 {
+        font-size: 1.8rem;
+    }
+}
+/* ... al final de la sección de la página de registro ... */
+
+.social-login-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-secondary);
+    margin: 1.5rem 0;
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.social-login-divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.social-login-divider:not(:empty)::after {
+    margin-left: .5em;
+}
+
+.btn-social {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    background-color: #f8f9fa;
+}
+
+.btn-social i {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+.btn-google .fa-google {
+    color: #DB4437;
+}
